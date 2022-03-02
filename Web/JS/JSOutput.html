@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Output</title>
+</head>
+<body>
+    <p id="first" style="text-align:center"></p>
+    <p id="second" style="text-align:center">This is the second paragraph.</p>
+    <a id="google" href="">click here to go to google.com</a>
+    <script>
+        document.writeln("This line is printed using document.writeln().")
+        alert("This message is displayed using alert().")
+        console.log("This message is printed using console.log()")
+        let first = document.getElementById("first")
+        first.innerHTML = "This is the first paragraph" //changed content
+        first.style.textAlign = "right" //changed style
+        let google = document.getElementById("google")
+        google.href = "https://google.com"  //changed attribute
+    </script>
+    </p>
+</body>
+</html>

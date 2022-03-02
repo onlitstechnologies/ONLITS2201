@@ -3,3 +3,13 @@ input {
     padding: 5px;
     margin-bottom: 10px;
 }
+
+form {
+    border: 1px solid;
+    padding-left: 200px;
+    padding-bottom: 20px;
+}
+
+form.alternate {
+    background-color: peachpuff;
+}
