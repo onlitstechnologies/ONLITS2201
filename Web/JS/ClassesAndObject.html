@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes and Objects</title>
+</head>
+<body>
+    
+
+    <script>
+        const student1 = {
+            rollno: 1,
+            name: "Mrityunjay Kumar",
+            gender: "Male"
+        }
+
+        const student2 = {
+            rollno: 2,
+            name: "Santosh Kumar",
+            gender: "Male"
+        }
+
+        document.write("Roll No: " + student1.rollno)
+        document.write("<br>Name: " + student1.name)
+
+
+        class student {
+            constructor(rollno, name) {
+                this.rollno = rollno
+                this.name = name
+            }
+
+            getdata(rollno, name) {
+                this.rollno = rollno
+                this.name = name
+            }
+
+            putdata() {
+                document.write ("<br><br>Printing from class student")
+                document.write("<br>Roll No: " + this.rollno)
+                document.write("<br>Name: " + this.name)
+            }
+        }
+
+        let s = new student(3, "Raju Kumar")
+        s.putdata();
+
+    </script>
+</body>
+</html>
