@@ -36,6 +36,11 @@ function database_pdo()
     }
 }
 
+function database_pdo_sql_server()
+{
+    
+}
+
 database_mysqli_procedural();
 database_mysqli_object_oriented();
 database_pdo();
