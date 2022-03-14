@@ -68,6 +68,7 @@ $difference = $minuend - $subtrahend;
     </div>
 
     <script>
+        //Event Handler
         function add() {
             let a = Number(document.getElementById("augend").value)
             let b = Number(document.getElementById("addend").value)
