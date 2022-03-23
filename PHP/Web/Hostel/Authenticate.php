@@ -27,8 +27,8 @@ $result = $stmt->get_result();
 if($result->num_rows>0) {
     // header("http://onlits2201.onlits.local/PHP/Web/Hostel/");
     $row = $result->fetch_assoc();
-    // session_start();
-    // $_SESSION['user_id'] = $user_id;
+    session_start();
+    $_SESSION['user_id'] = $user_id;
     utility::js_redirect("Dashboard.php");
 } else {
     utility::js_alert("Invalid username or password.");

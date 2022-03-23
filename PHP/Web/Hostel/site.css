@@ -1,0 +1,17 @@
+.type1 {
+    text-align: right;
+}
+
+.type2 {
+    text-align: center;
+}
+
+#logout {
+    color: red;
+}
+
+h1 {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    background-color: aqua;
+}
