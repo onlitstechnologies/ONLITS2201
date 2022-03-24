@@ -1,17 +1,23 @@
-.type1 {
-    text-align: right;
+/* --------------- Common -------------------------- */
+.logo-type-1 {
+    width: 100px;
+    border: 1px solid #3366FF;
+    margin-left: 150px;
+    margin-bottom: 20px;
 }
 
-.type2 {
-    text-align: center;
+.form-control {
+    padding: 10px;
+    margin: 10px;
 }
 
-#logout {
-    color: red;
+.form-control-block {
+    display: block;
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
-
-h1 {
-    color: rgb(255, 0, 0);
-    text-align: center;
-    background-color: aqua;
+.submit {
+    background-color: #3366FF;
+    color: white;
 }
