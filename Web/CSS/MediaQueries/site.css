@@ -1,0 +1,28 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.article {
+    background-color: azure;
+    border: 2px lightseagreen solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.article h1 {
+    color: blue;
+    background-color: aqua;
+    text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+}

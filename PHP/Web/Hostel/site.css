@@ -1,4 +1,14 @@
 /* --------------- Common -------------------------- */
+body {
+    margin: 0;
+}
+
+.logo-type-basic {
+    width: 100px;
+    border: 1px solid #3366FF;
+    margin: 0;
+}
+
 .logo-type-1 {
     width: 100px;
     border: 1px solid #3366FF;
@@ -17,7 +27,103 @@
     margin: 0 auto;
     margin-bottom: 20px;
 }
+
 .submit {
     background-color: #3366FF;
     color: white;
+}
+
+/*----------------------- Layout --------------------------*/
+.header {
+    background-color: #CCCCFF;
+}
+
+.title {
+    font-size: 24pt;
+    font-weight: bold;
+    color: blueviolet;
+}
+
+.main {}
+
+.footer {
+    background-color: #6666CC;
+    color: white;
+    text-align: center;
+}
+
+ul.nav {
+    list-style: none;
+    background-color: #6666CC;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    padding: 5px;
+}
+
+ul.nav li {
+    float: left;
+}
+
+ul.nav li a {
+    text-decoration: none;
+    color: white;
+    padding: 14px;
+}
+
+/* ----- Grid Layout ------ */
+.wrapper {
+    display: grid;
+    grid-template-columns: 1;
+}
+
+.header {}
+
+.navbar {}
+
+.main {}
+
+.footer {}
+
+/*-------------------- Grid Layout -----------------------*/
+.wrapper {
+    display: grid;
+    grid-template-columns: 1;
+}
+
+header {
+    background-color: #CCCCFF;
+}
+
+header h1 {
+    display: inline;
+    color: blueviolet;
+}
+
+nav {
+    background-color: #6666CC;
+    height: 30px;
+    padding-top: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+
+nav a:hover {
+    background-color: darkcyan;
+}
+
+.active {
+    background-color: darkcyan;
+}
+
+main {}
+
+footer {
+    background-color: #6666CC;
+    color: white;
+    text-align: center;
 }

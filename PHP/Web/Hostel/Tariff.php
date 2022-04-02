@@ -1,15 +1,3 @@
-<?php
-require 'Utility.php';
-
-session_start();
-if(!isset($_SESSION['user_id'])) {
-    utility::js_alert("Invalid session");
-    utility::js_redirect("index.php");
-}
-
-$user_id = $_SESSION['user_id'];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,16 +14,15 @@ $user_id = $_SESSION['user_id'];
             <h1>HMS 1.0</h1>
         </header>
         <nav>
-            <a class="active">Dashboard</a>
+            <a href="./Dashboard.php">Dashboard</a>
             <a href="./Room.php">Room</a>
-            <a href="./Tariff.php">Tariff</a>
+            <a class="active">Tariff</a>
             <a href="./Hosteller.php">Hosteller</a>
             <a href="./Allocation.php">Allocation</a>
             <a href="./Mess.php">Mess</a>
-            <a href="./Logout.php">Logout</a>
         </nav>
         <main>
-            <h1>Dashboard</h1>
+            <h1>Tariff</h1>
         </main>
         <footer>
             <p>&copy;2022, HMS 1.0</p>
