@@ -1,3 +1,8 @@
+<?php
+require "./RoomModel.php";
+$room = new roommodel();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,11 +31,21 @@
         <main>
             <h1>Room</h1>
             <div class="room-layout-wrapper">
-                <div class="room" id="101" onclick="clickRoom()"><a>101</a></div>
-                <div class="room"><a href="">102</a></div>
-                <div class="room">103</div>
-                <div class="room">104</div>
-                <div class="room">105</div>
+                <div class="room" id="101" onclick="clickRoom()"><a>101</a>
+                    <p><?= $room->get_room_type_desc($room->get_room_type('101')); ?></p>
+                </div>
+                <div class="room"><a href="">102</a>
+                    <p><?= $room->get_room_type_desc($room->get_room_type('102')); ?></p>
+                </div>
+                <div class="room">103
+                <p><?= $room->get_room_type_desc($room->get_room_type('103')); ?></p>
+                </div>
+                <div class="room">104
+                <p><?= $room->get_room_type_desc($room->get_room_type('104')); ?></p>
+                </div>
+                <div class="room">105
+                <p><?= $room->get_room_type_desc($room->get_room_type('105')); ?></p>
+                </div>
                 <div class="room">106</div>
                 <div class="room">107</div>
                 <div class="room">108</div>
@@ -55,11 +70,9 @@
         function clickRoom() {
             let roomno = document.getElementById("101");
             let roomcolor = window.getComputedStyle(roomno).backgroundImage;
-            if(roomcolor == "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))") {
+            if (roomcolor == "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))") {
                 roomno.style.backgroundImage = "linear-gradient(rgb(128, 0, 0), rgb(255, 255, 255))";
-            }
-            else
-            {
+            } else {
                 roomno.style.backgroundImage = "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))";
             }
         }

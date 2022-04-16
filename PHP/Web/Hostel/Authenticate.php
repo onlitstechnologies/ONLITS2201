@@ -1,11 +1,11 @@
 <?php
-require 'Credential.php';
+require './DBConfig.php';
 require 'Utility.php';
 
 $user_id = $_POST['user_id'];
 $password = $_POST['password'];
 
-$con = new mysqli($hostname, $user, $pwd, $db);
+$con = dbconfig::get_connection();
 
 // SCENARIO 1: Without Prepared Statement
 
@@ -16,7 +16,7 @@ $con = new mysqli($hostname, $user, $pwd, $db);
 // ---------------------------------------
 
 // SCENARIO 2: With Prepared Statement
-$stmt = $con->prepare("SELECT user_id FROM user WHERE user_id=? AND password=?");
+$stmt = $con->prepare("SELECT user_id FROM user WHERE user_id=? AND password=PASSWORD(?)");
 $stmt->bind_param("ss", $user_id, $password);
 $stmt->execute();
 $result = $stmt->get_result();
