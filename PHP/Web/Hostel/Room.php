@@ -46,9 +46,15 @@ $room = new roommodel();
                 <div class="room">105
                 <p><?= $room->get_room_type_desc($room->get_room_type('105')); ?></p>
                 </div>
-                <div class="room">106</div>
-                <div class="room">107</div>
-                <div class="room">108</div>
+                <div class="room">106
+                <p><?= $room->get_room_type_desc($room->get_room_type('106')); ?></p>
+                </div>
+                <div class="room">107
+                <p><?= $room->get_room_type_desc($room->get_room_type('107')); ?></p>
+                </div>
+                <div class="room">108
+                <p><?= $room->get_room_type_desc($room->get_room_type('108')); ?></p>
+                </div>
             </div>
             <hr>
             <div class="room-layout-wrapper">
