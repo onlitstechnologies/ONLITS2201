@@ -1,4 +1,5 @@
 <?php
+require "./HostellerModel.php";
 
 ?>
 <!DOCTYPE html>
