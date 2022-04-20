@@ -23,6 +23,7 @@
         </nav>
         <main>
             <h1>Hosteller</h1>
+            <a href="./NewHosteller.php">New Hosteller</a>
         </main>
         <footer>
             <p>&copy;2022, HMS 1.0</p>

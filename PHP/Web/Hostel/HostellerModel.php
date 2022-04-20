@@ -33,7 +33,6 @@ class hosteller_model
         if ($result->num_rows > 0) {
             $row = $result->fetch_array();
             $hosteller_id = $row[0];
-            echo $hosteller_id . "\n";
             $hosteller_id = substr($hosteller_id, 1);
             $hosteller_id += 1;
             if ($hosteller_id < 10)
@@ -75,5 +74,5 @@ class hosteller_model
     }
 }
 
-$hosteller = new hosteller_model("Mrityunjay", "", "Kumar", "2000-01-01", "M", "9874569856", "mrityunjay.kumar@onlits.com");
-$hosteller->new_hosteller();
+// $hosteller = new hosteller_model("Mrityunjay", "", "Kumar", "2000-01-01", "M", "9874569856", "mrityunjay.kumar@onlits.com");
+// $hosteller->new_hosteller();
