@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+    <link rel="stylesheet" href="site.css">
+</head>
+
+<body>
+    <button type="button" onclick="document.getElementById('modal_container').style.display='block'">Test Modal</button>
+    <button type="button" onclick="alert('Hello')">JS Alert</button>
+    <div class="modal-container" id="modal_container">
+        <form action="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    modal-header
+                    <span id="close_button" class="close_button"
+                        onclick="document.getElementById('modal_container').style.display='none'">x</span>
+                </div>
+                <div class="modal-body">
+                    <label for="">Date</label>
+                    <input type="text" name="date" id="date">
+                </div>
+                <div class="modal-footer">
+                    modal-footer
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <button type="button" onclick="document.getElementsById('modal-container').style.display='block'">Click Me!</button>
+    <!-- <div id="test_modal" onload="document.getElementsById('test_modal').appendChild('modal-container')">
+    
+    </div> -->
+
+    <script src="./Modal.js">
+
+    </script>
+</body>
+
+</html>

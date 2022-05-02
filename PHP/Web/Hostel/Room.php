@@ -1,6 +1,9 @@
 <?php
-require "./RoomModel.php";
+require_once "./RoomModel.php";
+require_once "./HostellerModel.php";
 $room = new roommodel();
+$hosteller = new hosteller_model();
+$hosteller_id = $_GET['hosteller_id'];
 ?>
 
 <!DOCTYPE html>
@@ -72,12 +75,42 @@ $room = new roommodel();
             <p>&copy;2022, HMS 1.0</p>
         </footer>
     </div>
+
+    <!------------------------------- Modal ------------------------------------------------>
+    <div class="modal-container" id="new-allocation">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-header-text">New Allocation</span>
+                <span class="close-button" id="close-button"> x </span>
+            </div>
+            <div class="modal-body">
+                <form class="type1" action="">
+                    <label for="room_no">Room Number</label>
+                    <input type="text" name="room_no" id="room_no" readonly>
+                    <label for="hosteller_id">Hosteller Id</label>
+                    <input type="text" name="hosteller_id" id="hosteller_id" onblur="form.submit()">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" value="<?= $hosteller->display_name($hosteller_id)?>">
+                    <button>Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
     <script>
+        close_button = document.getElementById("close-button")
+        close_button.onclick = function () {
+            document.getElementById("new-allocation").style.display = "none"
+        }
+
         function clickRoom() {
             let roomno = document.getElementById("101");
             let roomcolor = window.getComputedStyle(roomno).backgroundImage;
             if (roomcolor == "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))") {
-                roomno.style.backgroundImage = "linear-gradient(rgb(128, 0, 0), rgb(255, 255, 255))";
+                document.getElementById("new-allocation").style.display = "block"
+                document.getElementById("room_no").value = roomno.id
             } else {
                 roomno.style.backgroundImage = "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))";
             }

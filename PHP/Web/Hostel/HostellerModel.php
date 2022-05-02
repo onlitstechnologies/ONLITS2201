@@ -1,5 +1,5 @@
 <?php
-require "./DBConfig.php";
+require_once "./DBConfig.php";
 
 class hosteller_model
 {
@@ -12,7 +12,7 @@ class hosteller_model
     private $contact_number;
     private $email_id;
 
-    function __construct($first_name, $middle_name, $last_name, $date_of_birth, $gender, $contact_number, $email_id)
+    function init_hosteller($first_name, $middle_name, $last_name, $date_of_birth, $gender, $contact_number, $email_id)
     {
         $this->hosteller_id = $this->generate_hosteller_id();
         $this->first_name = $first_name;
@@ -23,6 +23,7 @@ class hosteller_model
         $this->contact_number = $contact_number;
         $this->email_id = $email_id;
     }
+
 
     function generate_hosteller_id()
     {
@@ -50,14 +51,19 @@ class hosteller_model
 
     function new_hosteller()
     {
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $con = dbconfig::get_connection();
         $sql = "INSERT INTO hosteller(hosteller_id, first_name, middle_name, last_name, date_of_birth, gender, contact_number, email_id) VALUES(?,?,?,?,?,?,?,?)";
-        $stmt = $con->prepare($sql);
-        $stmt->bind_param("ssssssss", $this->hosteller_id, $this->first_name, $this->middle_name, $this->last_name, $this->date_of_birth, $this->gender, $this->contact_number, $this->email_id);
-        $stmt->execute();
-        echo "Hosteller created successfully!";
-        $con->close();
+        if ($stmt = $con->prepare($sql)) {
+            $stmt->bind_param("ssssssss", $this->hosteller_id, $this->first_name, $this->middle_name, $this->last_name, $this->date_of_birth, $this->gender, $this->contact_number, $this->email_id);
+            if ($stmt->execute()) {
+                echo "Hosteller created successfully!";
+                // $con->close();
+            } else {
+                echo $stmt->error;
+            }
+        } else {
+            echo $stmt->error;
+        }
     }
 
     function edit_hosteller()
@@ -72,7 +78,22 @@ class hosteller_model
     {
         $this->hosteller_id = $hosteller_id;
     }
-}
 
-// $hosteller = new hosteller_model("Mrityunjay", "", "Kumar", "2000-01-01", "M", "9874569856", "mrityunjay.kumar@onlits.com");
-// $hosteller->new_hosteller();
+    function display_name($hosteller_id)
+    {
+        $this->hosteller_id = $hosteller_id;
+        $con = dbconfig::get_connection();
+        $sql = "SELECT first_name, middle_name, last_name FROM hosteller WHERE hosteller_id='$this->hosteller_id'";
+        $result = $con->query($sql);
+        if($result->num_rows>0) {
+            $row = $result->fetch_assoc();
+            if($row['middle_name'] != '') {
+                return $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
+            } else {
+                return $row['first_name'] . " " . $row['last_name'];
+            }
+        } else {
+            echo "<script>alert('No records found')</script>";
+        }
+    }
+}

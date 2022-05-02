@@ -1,15 +1,13 @@
 <?php
 if (isset($_POST["submit"])) {
-    echo "Submit was clicked!";
     require "./HostellerModel.php";
     $first_name = $_POST["first_name"];
     $middle_name = $_POST["middle_name"];
     $last_name = $_POST["last_name"];
-    $date_of_birth = $_POST["data_of_birth"];
+    $date_of_birth = $_POST["date_of_birth"];
     $gender = $_POST["gender"];
     $contact_number = $_POST["contact_number"];
     $email_id = $_POST["email_id"];
-
     $hosteller = new hosteller_model("$first_name", "$middle_name", "$last_name", "$date_of_birth", "$gender", "$contact_number", "$email_id");
     $hosteller->new_hosteller();
 }
