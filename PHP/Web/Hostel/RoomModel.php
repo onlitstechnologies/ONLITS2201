@@ -44,6 +44,25 @@ class roommodel
             return "Data not found";
         }
     }
+
+    function get_room_status($room_no)
+    {
+        /*
+            0   -   vacant
+            1   -   occupied
+        */
+
+        $this->room_no = $room_no;
+        $con = dbconfig::get_connection();
+        $sql = "SELECT room_no FROM room_allocation";
+        $result = $con->query($sql);
+        if($result->num_rows>0)
+        {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }
 
 // $room = new roommodel();
