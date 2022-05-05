@@ -43,29 +43,32 @@ if (isset($_POST['submit'])) {
         <main>
             <h1>Room</h1>
             <div class="room-layout-wrapper">
-                <div class="room" id="101" onclick="clickRoom()"><a>101</a>
+                <div class="room" id="101"><a onclick="clickRoom(this.innerHTML)">101</a>
                     <input type="hidden" name="" id="room_status_101" value="<?= $room->get_room_status('101') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('101')); ?></p>
                 </div>
-                <div class="room"><a href="">102</a>
+                <div class="room" id="102"><a onclick="clickRoom(this.innerHTML)">102</a>
+                    <input type="hidden" name="" id="room_status_102" value="<?= $room->get_room_status('102') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('102')); ?></p>
                 </div>
-                <div class="room">103
+                <div class="room" id="103"><a onclick="clickRoom(this.innerHTML)">103</a>
+                    <input type="hidden" name="" id="room_status_103" value="<?= $room->get_room_status('103') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('103')); ?></p>
                 </div>
-                <div class="room">104
+                <div class="room" id="104"><a onclick="clickRoom(this.innerHTML)">104</a>
+                    <input type="hidden" name="" id="room_status_104" value="<?= $room->get_room_status('104') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('104')); ?></p>
                 </div>
-                <div class="room">105
+                <div class="room" id="105">105
                     <p><?= $room->get_room_type_desc($room->get_room_type('105')); ?></p>
                 </div>
-                <div class="room">106
+                <div class="room" id="106">106
                     <p><?= $room->get_room_type_desc($room->get_room_type('106')); ?></p>
                 </div>
-                <div class="room">107
+                <div class="room" id="107">107
                     <p><?= $room->get_room_type_desc($room->get_room_type('107')); ?></p>
                 </div>
-                <div class="room">108
+                <div class="room" id="108">108
                     <p><?= $room->get_room_type_desc($room->get_room_type('108')); ?></p>
                 </div>
             </div>
@@ -111,23 +114,29 @@ if (isset($_POST['submit'])) {
     </div>
     <script>
         // --------------- Getting room status -------------------
-        let roomno = document.getElementById("101");
-        if (document.getElementById('room_status_101').value == 1) {
-            roomno.style.backgroundImage = "linear-gradient(rgb(128, 0, 0), rgb(255, 255, 255))"
-            alert("Hello")
-            roomno.style.backgroundColor = "red";
-        } else {
-            alert("Hi")
-            roomno.style.backgroundImage = "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))"
+        let roomnos = ["101", "102", "103", "104", "105", "106", "107", "108", "201", "202", "203", "204", "205", "206", "207", "208"];
+        roomnos.forEach(showRoomStatus);
+
+        function showRoomStatus(value, index, array) {
+            let hidden_status_element = "room_status_" + value;
+            alert(hidden_status_element)
+            if (document.getElementById(hidden_status_element).value == 1) {
+                document.getElementById(value).style.backgroundImage = "linear-gradient(rgb(128, 0, 0), rgb(255, 255, 255))"
+                document.getElementById(value).style.backgroundColor = "red";
+            } else {
+                document.getElementById(value).style.backgroundImage = "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))"
+            }
         }
+
+
         close_button = document.getElementById("close-button")
         close_button.onclick = function() {
             document.getElementById("new-allocation").style.display = "none"
         }
 
 
-
-        function clickRoom() {
+        function clickRoom(id) {
+            let roomno = document.getElementById(id);
             let roomcolor = window.getComputedStyle(roomno).backgroundImage;
             if (roomcolor == "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))") {
                 document.getElementById("new-allocation").style.display = "block"
