@@ -12,18 +12,6 @@ class hosteller_model
     private $contact_number;
     private $email_id;
 
-    function init_hosteller($first_name, $middle_name, $last_name, $date_of_birth, $gender, $contact_number, $email_id)
-    {
-        $this->hosteller_id = $this->generate_hosteller_id();
-        $this->first_name = $first_name;
-        $this->middle_name = $middle_name;
-        $this->last_name = $last_name;
-        $this->date_of_birth = $date_of_birth;
-        $this->gender = $gender;
-        $this->contact_number = $contact_number;
-        $this->email_id = $email_id;
-    }
-
 
     function generate_hosteller_id()
     {
@@ -49,8 +37,17 @@ class hosteller_model
         return $hosteller_id;
     }
 
-    function new_hosteller()
+    function new_hosteller($first_name, $middle_name, $last_name, $date_of_birth, $gender, $contact_number, $email_id)
     {
+        $this->hosteller_id = $this->generate_hosteller_id();
+        $this->first_name = $first_name;
+        $this->middle_name = $middle_name;
+        $this->last_name = $last_name;
+        $this->date_of_birth = $date_of_birth;
+        $this->gender = $gender;
+        $this->contact_number = $contact_number;
+        $this->email_id = $email_id;
+
         $con = dbconfig::get_connection();
         $sql = "INSERT INTO hosteller(hosteller_id, first_name, middle_name, last_name, date_of_birth, gender, contact_number, email_id) VALUES(?,?,?,?,?,?,?,?)";
         if ($stmt = $con->prepare($sql)) {
@@ -66,12 +63,34 @@ class hosteller_model
         }
     }
 
-    function edit_hosteller()
+    function edit_hosteller($hosteller_id, $first_name, $middle_name, $last_name, $date_of_birth, $gender, $contact_number, $email_id)
     {
+        $this->hosteller_id = $hosteller_id;
+        $this->first_name = $first_name;
+        $this->middle_name = $middle_name;
+        $this->last_name = $last_name;
+        $this->date_of_birth = $date_of_birth;
+        $this->gender = $gender;
+        $this->contact_number = $contact_number;
+        $this->email_id = $email_id;
+        $con = dbconfig::get_connection();
+        $sql = "UPDATE hosteller SET first_name='$first_name', middle_name='$middle_name', last_name='$last_name', date_of_birth='$date_of_birth', gender='$gender', contact_number='$contact_number', email_id='$email_id' WHERE hosteller_id='$hosteller_id'";
+        if($con->query($sql)===TRUE) {
+            echo "Hosteller record updated successfully";
+        } else {
+            echo $con->error;
+        }
     }
 
     function display_all()
     {
+        $con = dbconfig::get_connection();
+        $sql = "SELECT * FROM hosteller";
+        $result = $con->query($sql);
+        if($result->num_rows>0) {
+            $rows = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return $rows;
     }
 
     function display($hosteller_id)
@@ -97,3 +116,6 @@ class hosteller_model
         }
     }
 }
+
+// $hosteller = new hosteller_model();
+// $hosteller->display_all();

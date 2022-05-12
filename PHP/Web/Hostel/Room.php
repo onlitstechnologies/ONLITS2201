@@ -59,7 +59,8 @@ if (isset($_POST['submit'])) {
                     <input type="hidden" name="" id="room_status_104" value="<?= $room->get_room_status('104') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('104')); ?></p>
                 </div>
-                <div class="room" id="105">105
+                <div class="room" id="105"><a onclick="clickRoom(this.innerHTML)">105</a>
+                    <input type="hidden" name="" id="room_status_105" value="<?= $room->get_room_status('105') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('105')); ?></p>
                 </div>
                 <div class="room" id="106">106
@@ -112,14 +113,62 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
+
+    <!-------------------------------NewAllocation Modal ------------------------------------------------>
+    <div class="modal-container" id="new-allocation">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-header-text">New Allocation</span>
+                <span class="close-button" id="close-button"> x </span>
+            </div>
+            <div class="modal-body">
+                <form class="type1" action="" method="post">
+                    <label for="room_no">Room Number</label>
+                    <input type="text" name="room_no" id="room_no" readonly>
+                    <label for="hosteller_id">Hosteller Id</label>
+                    <input type="text" name="hosteller_id" id="hosteller_id" onblur="displayName(this.value)">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name">
+                    <button name="submit">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------- Existing Allocation Modal ------------------------------------------------>
+    <div class="modal-container" id="existing-allocation">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-header-text">Existing Allocation</span>
+                <span class="close-button" id="existing-close-button"> x </span>
+            </div>
+            <div class="modal-body">
+                <form class="type1" action="" method="post">
+                    <label for="existing_room_no">Room Number</label>
+                    <input type="text" name="existing_room_no" id="existing_room_no" readonly>
+                    <label for="existing_hosteller_id">Hosteller Id</label>
+                    <input type="text" name="existing_hosteller_id" id="existing_hosteller_id" onblur="displayName(this.value)">
+                    <label for="existing_name">Name</label>
+                    <input type="text" name="existing_name" id="existing_name">
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
     <script>
         // --------------- Getting room status -------------------
-        let roomnos = ["101", "102", "103", "104", "105", "106", "107", "108", "201", "202", "203", "204", "205", "206", "207", "208"];
-        roomnos.forEach(showRoomStatus);
+        const roomnos = ["101", "102", "103", "104", "105", "106", "107", "108", "201", "202", "203", "204", "205", "206", "207", "208"];
+        for (i = 0; i < 5; i++) {
+            showRoomStatus(roomnos[i]);
+        }
 
-        function showRoomStatus(value, index, array) {
+        function showRoomStatus(value) {
             let hidden_status_element = "room_status_" + value;
-            alert(hidden_status_element)
             if (document.getElementById(hidden_status_element).value == 1) {
                 document.getElementById(value).style.backgroundImage = "linear-gradient(rgb(128, 0, 0), rgb(255, 255, 255))"
                 document.getElementById(value).style.backgroundColor = "red";
@@ -134,6 +183,11 @@ if (isset($_POST['submit'])) {
             document.getElementById("new-allocation").style.display = "none"
         }
 
+        existing_close_button = document.getElementById("existing-close-button")
+        existing_close_button.onclick = function() {
+            document.getElementById("existing-allocation").style.display = "none"
+        }
+
 
         function clickRoom(id) {
             let roomno = document.getElementById(id);
@@ -142,7 +196,8 @@ if (isset($_POST['submit'])) {
                 document.getElementById("new-allocation").style.display = "block"
                 document.getElementById("room_no").value = roomno.id
             } else {
-                // roomno.style.backgroundImage = "linear-gradient(rgb(0, 128, 0), rgb(255, 255, 255))";
+                document.getElementById("existing-allocation").style.display = "block"
+                document.getElementById("existing_room_no").value = roomno.id
             }
         }
 

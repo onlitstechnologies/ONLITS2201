@@ -40,6 +40,18 @@ class allocation_model
     {
     }
 
+    function search_allocation_by_room_number($room_no)
+    {
+        $row = null;
+        $con = dbconfig::get_connection();
+        $sql = "SELECT * FROM room_allocation WHERE room_no='$room_no'";
+        $result = $con->query($sql);
+        if($result->num_rows>0) {
+            $row = $result->fetch_assoc();
+        }
+        return $row;
+    }
+
     function display_all_allocations()
     {
     }
