@@ -21,7 +21,11 @@ if (isset($_POST["submit_new"])) {
     $edit_contact_number = $_POST["edit_contact_number"];
     $edit_email_id = $_POST["edit_email_id"];
     $hosteller = new hosteller_model();
-    $hosteller->edit_hosteller("$edit_hosteller_id","$edit_first_name", "$edit_middle_name", "$edit_last_name", "$edit_date_of_birth", "$edit_gender", "$edit_contact_number", "$edit_email_id");
+    $hosteller->edit_hosteller("$edit_hosteller_id", "$edit_first_name", "$edit_middle_name", "$edit_last_name", "$edit_date_of_birth", "$edit_gender", "$edit_contact_number", "$edit_email_id");
+} elseif (isset($_POST['delete'])) {
+    $delete_hosteller_id = $_POST['hidden_hosteller_id'];
+    $hosteller = new hosteller_model();
+    $hosteller->delete_hosteller($delete_hosteller_id);
 }
 ?>
 <!DOCTYPE html>
@@ -81,7 +85,10 @@ if (isset($_POST["submit_new"])) {
                         <td><?= $rows[$i]['contact_number'] ?></td>
                         <td><?= $rows[$i]['email_id'] ?></td>
                         <td><button type="button" onclick="showEditHostellerModal(this.id)" id="<?= $rows[$i]['hosteller_id'] ?>">Edit</button></td>
-                        <td>Delete</td>
+                        <form action="" method="post">
+                            <input type="hidden" name="hidden_hosteller_id" id="" value="<?= $rows[$i]['hosteller_id'] ?>">
+                            <td><button name="delete">Delete</button></td>
+                        </form>
                     </tr>
                 <?php
                 }
@@ -130,6 +137,8 @@ if (isset($_POST["submit_new"])) {
                     </div>
                     <div class="modal-body">
                         <form action="" method="post" class="type1">
+                            <label for="id">Hosteller Id</label>
+                            <input type="text" name="edit_hosteller_id" id="edit_hosteller_id">
                             <label for="first_name">First Name</label>
                             <input type="text" name="edit_first_name" id="edit_first_name">
                             <label for="middle_name">Middle Name</label>
@@ -159,6 +168,8 @@ if (isset($_POST["submit_new"])) {
         </footer>
     </div>
     <script>
+        console.log("Beginning of script element")
+
         function showNewHostellerModal() {
             let modal = document.getElementById("new_hosteller_modal")
             modal.style.display = "block"
@@ -170,6 +181,7 @@ if (isset($_POST["submit_new"])) {
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     hosteller = JSON.parse(this.response)
+                    document.getElementById("edit_hosteller_id").value = hosteller.hosteller_id
                     document.getElementById("edit_first_name").value = hosteller.first_name
                     document.getElementById("edit_middle_name").value = hosteller.middle_name
                     document.getElementById("edit_last_name").value = hosteller.last_name
@@ -194,6 +206,7 @@ if (isset($_POST["submit_new"])) {
         edit_close_button.onclick = function() {
             document.getElementById("edit_hosteller_modal").style.display = "none"
         }
+        console.log("End of script element")
     </script>
 </body>
 

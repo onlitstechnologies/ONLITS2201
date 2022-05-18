@@ -217,6 +217,10 @@ if (isset($_POST['submit'])) {
             }
             // document.getElementById('name').value = "Hello! " + hostellerId
         }
+
+        function existing_allocation() {
+            
+        }
     </script>
 </body>
 

@@ -115,6 +115,16 @@ class hosteller_model
             echo "<script>alert('No records found')</script>";
         }
     }
+    function delete_hosteller($hosteller_id)
+    {
+        $con = dbconfig::get_connection();
+        $sql = "DELETE FROM hosteller WHERE hosteller_id='$hosteller_id'";
+        if($con->query($sql)==TRUE) {
+            echo "Hosteller deleted successfully";
+        } else {
+            echo $con->error;
+        }
+    }
 }
 
 // $hosteller = new hosteller_model();
