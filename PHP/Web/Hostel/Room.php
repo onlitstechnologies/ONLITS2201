@@ -160,6 +160,8 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
+
+    <?php require "./MessageBox.php"; ?>
     <script>
         // --------------- Getting room status -------------------
         const roomnos = ["101", "102", "103", "104", "105", "106", "107", "108", "201", "202", "203", "204", "205", "206", "207", "208"];
