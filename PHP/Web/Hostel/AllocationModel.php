@@ -1,5 +1,7 @@
 <?php
 require_once "./DBConfig.php";
+require_once "./MessageBox.php";
+
 class allocation_model
 {
     private $allocation_id;
@@ -18,7 +20,7 @@ class allocation_model
         $con = dbconfig::get_connection();
         $sql = "INSERT INTO room_allocation(date, hosteller_id, room_no) VALUES(CURDATE(), '$this->hosteller_id','$this->room_no')";
         if ($con->query($sql) === TRUE) {
-            echo "Room successfully allocated";
+            message_box("HMS 1.0", "Room allocated successfully!");
         } else {
             echo $con->error;
         }

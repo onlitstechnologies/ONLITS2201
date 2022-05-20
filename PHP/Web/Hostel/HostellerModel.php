@@ -1,5 +1,6 @@
 <?php
 require_once "./DBConfig.php";
+require_once "./MessageBox.php";
 
 class hosteller_model
 {
@@ -53,7 +54,7 @@ class hosteller_model
         if ($stmt = $con->prepare($sql)) {
             $stmt->bind_param("ssssssss", $this->hosteller_id, $this->first_name, $this->middle_name, $this->last_name, $this->date_of_birth, $this->gender, $this->contact_number, $this->email_id);
             if ($stmt->execute()) {
-                echo "Hosteller created successfully!";
+                message_box("HMS 1.0", "Hosteller created successfully!");
                 // $con->close();
             } else {
                 echo $stmt->error;

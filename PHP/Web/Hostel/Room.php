@@ -64,6 +64,7 @@ if (isset($_POST['submit'])) {
                     <p><?= $room->get_room_type_desc($room->get_room_type('105')); ?></p>
                 </div>
                 <div class="room" id="106">106
+                    <input type="hidden" name="" id="room_status_105" value="<?= $room->get_room_status('105') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('106')); ?></p>
                 </div>
                 <div class="room" id="107">107
@@ -161,7 +162,8 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
-    <?php require "./MessageBox.php"; ?>
+    <?php //require "./MessageBox.php"; 
+    ?>
     <script>
         // --------------- Getting room status -------------------
         const roomnos = ["101", "102", "103", "104", "105", "106", "107", "108", "201", "202", "203", "204", "205", "206", "207", "208"];
@@ -221,7 +223,7 @@ if (isset($_POST['submit'])) {
         }
 
         function existing_allocation() {
-            
+
         }
     </script>
 </body>
