@@ -34,8 +34,9 @@ class allocation_model
     {
     }
 
-    function search_allocation_by_allocation_id()
+    function search_allocation_by_allocation_id($allocation_id)
     {
+        
     }
 
     function search_allocation_by_hosteller_id()

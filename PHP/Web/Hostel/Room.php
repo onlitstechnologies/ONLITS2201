@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
                     <input type="hidden" name="" id="room_status_105" value="<?= $room->get_room_status('105') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('105')); ?></p>
                 </div>
-                <div class="room" id="106">106
+                <div class="room" id="106"><a onclick="clickRoom(this.innerHTML)">106</a>
                     <input type="hidden" name="" id="room_status_105" value="<?= $room->get_room_status('105') ?>">
                     <p><?= $room->get_room_type_desc($room->get_room_type('106')); ?></p>
                 </div>
@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <!------------------------------- Modal ------------------------------------------------>
-    <div class="modal-container" id="new-allocation">
+    <!-- <div class="modal-container" id="new-allocation">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="modal-header-text">New Allocation</span>
@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
 
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-------------------------------NewAllocation Modal ------------------------------------------------>
     <div class="modal-container" id="new-allocation">
@@ -157,7 +157,7 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
             <div class="modal-footer">
-
+                <button type="button">Check out</button>
             </div>
         </div>
     </div>
@@ -200,6 +200,7 @@ if (isset($_POST['submit'])) {
                 document.getElementById("new-allocation").style.display = "block"
                 document.getElementById("room_no").value = roomno.id
             } else {
+                existing_allocation(roomno.id);
                 document.getElementById("existing-allocation").style.display = "block"
                 document.getElementById("existing_room_no").value = roomno.id
             }
@@ -222,8 +223,17 @@ if (isset($_POST['submit'])) {
             // document.getElementById('name').value = "Hello! " + hostellerId
         }
 
-        function existing_allocation() {
-
+        function existing_allocation(room_no) {
+            let xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const allocation = JSON.parse(this.responseText)
+                    document.getElementById('existing_hosteller_id').value = allocation.hosteller_id;
+                    document.getElementById('existing_name').value = allocation.hosteller_name;
+                }
+            }
+            xhr.open("GET", "GetAllocation.php?room_no=" + room_no, true)
+            xhr.send()
         }
     </script>
 </body>
