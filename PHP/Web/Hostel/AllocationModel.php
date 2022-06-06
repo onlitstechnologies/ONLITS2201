@@ -4,30 +4,32 @@ require_once "./MessageBox.php";
 
 class allocation_model
 {
-    private $allocation_id;
-    private $date;
-    private $hosteller_id;
-    private $room_no;
-
-    function init_allocation($hosteller_id, $room_no)
-    {
-        $this->hosteller_id = $hosteller_id;
-        $this->room_no = $room_no;
-    }
-
-    function new_allocation()
+    function new_allocation($hosteller_id, $room_no)
     {
         $con = dbconfig::get_connection();
-        $sql = "INSERT INTO room_allocation(date, hosteller_id, room_no) VALUES(CURDATE(), '$this->hosteller_id','$this->room_no')";
+        $sql = "INSERT INTO room_allocation(date, hosteller_id, room_no) VALUES(CURDATE(), '$hosteller_id','$room_no')";
         if ($con->query($sql) === TRUE) {
-            message_box("HMS 1.0", "Room allocated successfully!");
+            message_box("Room allocated successfully!");
         } else {
-            echo $con->error;
+            message_box($con->error, "HMS 1.0 - Error");
+        }
+    }
+
+    function checkout($allocation_id)
+    {
+        echo "allocation_id: $allocation_id";
+        $con = dbconfig::get_connection();
+        $sql = "UPDATE room_allocation SET checkout_date = CURDATE() WHERE allocation_id= '$allocation_id'";
+        if($con->query($sql)) {
+            message_box("Hosteller checked out");
+        } else {
+            message_box($con->error, "HMS 1.0 - Error");
         }
     }
 
     function edit_alloction()
     {
+
     }
 
     function delete_allocation()
@@ -39,8 +41,9 @@ class allocation_model
         
     }
 
-    function search_allocation_by_hosteller_id()
+    function search_allocation_by_hosteller_id($hosteller_id)
     {
+
     }
 
     function search_allocation_by_room_number($room_no)
@@ -57,5 +60,6 @@ class allocation_model
 
     function display_all_allocations()
     {
+        
     }
 }

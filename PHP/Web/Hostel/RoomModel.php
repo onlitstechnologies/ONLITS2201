@@ -54,7 +54,7 @@ class roommodel
 
         $this->room_no = $room_no;
         $con = dbconfig::get_connection();
-        $sql = "SELECT room_no FROM room_allocation WHERE room_no='$room_no'";
+        $sql = "SELECT room_no FROM room_allocation WHERE room_no='$room_no' AND checkout_date IS NULL";
         $result = $con->query($sql);
         if($result->num_rows>0)
         {

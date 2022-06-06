@@ -1,5 +1,5 @@
 <?php
-function message_box($header, $body)
+function message_box($body, $header="HMS 1,0")
 {
 ?>
     <style>
@@ -45,14 +45,15 @@ function message_box($header, $body)
                 <?= $body ?>
             </div>
             <div class="mb-modal-footer">
-                <button type="button" id="ok">OK</button>
+                <button type="button" onclick="okOnClick()">OK</button>
             </div>
         </div>
     </div>
 
     <script>
-        let ok = document.getElementById("ok");
-        ok.onclick = function() {
+        // let ok = document.getElementById("ok[]");
+        
+        function okOnClick() {
             document.getElementById("messagebox").style.display = "none";
         }
     </script>

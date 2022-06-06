@@ -10,8 +10,13 @@ if (isset($_POST['submit'])) {
     $hosteller_id = $_POST['hosteller_id'];
     $room_no = $_POST['room_no'];
     $allocation = new allocation_model();
-    $allocation->init_allocation($hosteller_id, $room_no);
-    $allocation->new_allocation();
+    $allocation->new_allocation($hosteller_id, $room_no);
+}
+
+if (isset($_POST['check_out'])) {
+    $allocation_id = $_POST['existing_allocation_id'];
+    $allocation = new allocation_model();
+    $allocation->checkout($allocation_id);
 }
 ?>
 
@@ -91,30 +96,6 @@ if (isset($_POST['submit'])) {
         </footer>
     </div>
 
-    <!------------------------------- Modal ------------------------------------------------>
-    <!-- <div class="modal-container" id="new-allocation">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-header-text">New Allocation</span>
-                <span class="close-button" id="close-button"> x </span>
-            </div>
-            <div class="modal-body">
-                <form class="type1" action="" method="post">
-                    <label for="room_no">Room Number</label>
-                    <input type="text" name="room_no" id="room_no" readonly>
-                    <label for="hosteller_id">Hosteller Id</label>
-                    <input type="text" name="hosteller_id" id="hosteller_id" onblur="displayName(this.value)">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
-                    <button name="submit">Submit</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div> -->
-
     <!-------------------------------NewAllocation Modal ------------------------------------------------>
     <div class="modal-container" id="new-allocation">
         <div class="modal-content">
@@ -142,23 +123,25 @@ if (isset($_POST['submit'])) {
     <!------------------------------- Existing Allocation Modal ------------------------------------------------>
     <div class="modal-container" id="existing-allocation">
         <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-header-text">Existing Allocation</span>
-                <span class="close-button" id="existing-close-button"> x </span>
-            </div>
-            <div class="modal-body">
-                <form class="type1" action="" method="post">
+            <form class="type1" action="" method="post">
+                <div class="modal-header">
+                    <span class="modal-header-text">Existing Allocation</span>
+                    <span class="close-button" id="existing-close-button"> x </span>
+                </div>
+                <div class="modal-body">
+
                     <label for="existing_room_no">Room Number</label>
                     <input type="text" name="existing_room_no" id="existing_room_no" readonly>
                     <label for="existing_hosteller_id">Hosteller Id</label>
                     <input type="text" name="existing_hosteller_id" id="existing_hosteller_id" onblur="displayName(this.value)">
                     <label for="existing_name">Name</label>
                     <input type="text" name="existing_name" id="existing_name">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button">Check out</button>
-            </div>
+                    <input type="hidden" name="existing_allocation_id" id="existing_allocation_id">
+                </div>
+                <div class="modal-footer">
+                    <button name="check_out">Check out</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -228,6 +211,7 @@ if (isset($_POST['submit'])) {
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     const allocation = JSON.parse(this.responseText)
+                    document.getElementById('existing_allocation_id').value = allocation.allocation_id;
                     document.getElementById('existing_hosteller_id').value = allocation.hosteller_id;
                     document.getElementById('existing_name').value = allocation.hosteller_name;
                 }
