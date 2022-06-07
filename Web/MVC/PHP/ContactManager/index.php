@@ -1,11 +1,14 @@
 <?php
+
+use contact_manager\home_controller;
+
 $uri = $_SERVER['REQUEST_URI'];
-echo $uri;
 $prefix = "/Web/MVC/PHP/ContactManager";
 switch($uri)
 {
     case "$prefix/":
-        require "./View/Home.php";
+        $home = new home_controller();
+        $home->index();
         break;
     case "$prefix/aboutus":
         require "./View/AboutUs.php";
