@@ -1,2 +1,4 @@
 ReWriteEngine On
+
+#All URI should be redirected to index.php
 ReWriteRule ^(.*)$ index.php

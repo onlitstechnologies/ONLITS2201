@@ -1,4 +1,5 @@
 <?php
+require_once "./.config/bootstrap.php";
 
 use contact_manager\home_controller;
 

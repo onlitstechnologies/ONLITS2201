@@ -1,11 +1,11 @@
 <?php
-namespace contact_manager
+
+namespace contact_manager;
+
+class home_controller extends base_controller
 {
-    class home_controller extends base_controller
+    function index()
     {
-        function index()
-        {
-            echo "Printing from home_controller";
-        }
+        echo "Printing from home_controller";
     }
 }
