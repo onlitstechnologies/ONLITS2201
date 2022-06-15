@@ -1,24 +1,23 @@
 <?php
+require_once "./.config/bootstrap.php";
 
 use contact_manager\home_controller;
 
 $uri = $_SERVER['REQUEST_URI'];         //Reading URI's
-echo $uri . "<br>";
 $prefix = "/Web/MVC/PHP/ContactManager";
 switch($uri)
 {
-    case "$prefix/":
-        // $home = new home_controller();
-        // $home->index();
+    case "$prefix/":        //Route 1
+        $home = new home_controller();
+        $home->index();
         break;
-    case "$prefix/aboutus":
-        require "./View/AboutUs.php";
+    case "$prefix/about-us":     //Route 2
+        require_once "./View/AboutUs.php";
         break;
-    case "$prefix/new-contact":
+    case "$prefix/new-contact":     //Route 3
         echo "Under Construction ...";
         break;
     default:
         require "./View/404.php";
 }
 ?>
-<h1>Index</h1>
